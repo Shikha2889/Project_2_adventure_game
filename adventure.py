@@ -36,9 +36,10 @@ while True:
             print(exit)
             command = input("> ")
             if command not in exit:
-                print("You can't go that way") 
+                print("You can't go that way.") 
             else:
                 next_room = worldmap[roomname]["exits"][command]
+                print(next_room)
                 visited_rooms.append(next_room)
                 #print(worldmap[next_room]["description"])
                 #print(worldmap[next_room]['roomtype'])
@@ -49,9 +50,17 @@ while True:
                     else:
 
                         curr_loc = next_room
-                        print("current_loc: ", curr_loc)
+                        print(worldmap[roomname]["description"])
+                        break;
+                        #print("current_loc: ", curr_loc)
+                elif(worldmap[next_room]["roomtype"]=='lose'):
+                    print(worldmap[next_room]["description"]);
+                    curr_loc = next_room    
+                    #print("exit lose")
+                    break;
                 else:
                     curr_loc = next_room
-                    print("current_loc: ", curr_loc)
-    if(worldmap[curr_loc]["roomtype"]=="win" or worldmap[curr_loc]["roomtype"]=="lose"):
-        break;
+                    #print("current_loc: ", curr_loc)
+
+        if(worldmap[curr_loc]["roomtype"]=="win" or worldmap[curr_loc]["roomtype"]=="lose"):
+            break;
