@@ -1,8 +1,12 @@
 import json
 import sys
 
+
 def load_world_map(fn):
-    #opening JSON file
+
+    '''opening the JSON file for eg. map1.json
+    and reading the data from it
+    '''
     f = open(fn, 'r')
     data = json.loads(f.read())
     return data
@@ -10,7 +14,7 @@ def load_world_map(fn):
 worldmap = load_world_map(sys.argv[1])
 
 
-#variable to store the current location of the user
+'''variable to store the current location of the user'''
 curr_loc = "start"
 next_room = 'null'
 
@@ -26,14 +30,14 @@ def list_contains(list1,list2):
 
 
 while True:
-    #if curr_loc == "start" and next_room=='null':
-    #    print(worldmap["start"]["description"])
-    
+    ''' Prompting the user to input the direction 
+    until it wins or loses the game
+    '''
     for roomname in worldmap:
         if(roomname ==curr_loc):
             print(worldmap[roomname]["description"])
             exit =list(worldmap[roomname]["exits"].keys())
-            print(exit)
+            #print(exit)
             command = input("> ")
             if command not in exit:
                 print("You can't go that way.") 
